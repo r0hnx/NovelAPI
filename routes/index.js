@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 var cheerio = require('cheerio');
 
-router.get('/', async (req, res, next) => {
+router.get('/', async function (req, res, next) {
   let response;
   try {
     response = await axios.get("https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory");
@@ -21,8 +21,9 @@ router.get('/', async (req, res, next) => {
   var names = html('#thetable').children('tbody').children('tr').children('th');
 
   for (let i = 11; i < names.length; i += 2) {
+    let country = names[i].children[0].children[0].data || names[i].children[0].children[0].children[0].data || "";
     result.push({
-      country: names[i].children[0].children[0].data,
+      region: country,
       img: `https:${names[i-1].children[0].attribs.src.replace('23px', '128px')}`,
     });
   }
