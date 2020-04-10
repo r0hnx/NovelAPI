@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 var cheerio = require('cheerio');
 
-router.get('/', async function (req, res, next) {
+router.get('/', async (req, res, next) => {
   let response;
   try {
     response = await axios.get("https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory");
