@@ -4,6 +4,11 @@ var axios = require('axios');
 var cheerio = require('cheerio');
 
 router.get('/', async function (req, res, next) {
+  var ip = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     (req.connection.socket ? req.connection.socket.remoteAddress : null);
+  console.log("GET " + ip +' : REQ ' + '\'/\'');
   let response;
   try {
     response = await axios.get("https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory");
@@ -21,10 +26,24 @@ router.get('/', async function (req, res, next) {
   var names = html('#thetable').children('tbody').children('tr').children('th');
 
   for (let i = 11; i < names.length; i += 2) {
+    let url = `https://en.wikipedia.org${names[i].children[0].attribs.href}`;
     let country = names[i].children[0].children[0].data || names[i].children[0].children[0].children[0].data || "";
+    let response;
+    try {
+      response = await axios.get(url);
+      if (response.status !== 200) {
+        console.log("ERROR");
+      }
+    } catch (err) {
+      return null;
+    }
+    let $ = cheerio.load(response.data);
+    var map = $('a[class=image]');
     result.push({
-      region: country,
+      name: country.trim(),
       img: `https:${names[i-1].children[0].attribs.src.replace('23px', '128px')}`,
+      url: url.trim(),
+      map: map[1].children[0].attribs.src.replace('220px', '480px')
     });
   }
 

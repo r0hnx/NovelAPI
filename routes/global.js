@@ -4,7 +4,12 @@ var axios = require('axios');
 var cheerio = require('cheerio');
 
 router.get('/',async (req, res, next) => {
-    let response;
+  var ip = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     (req.connection.socket ? req.connection.socket.remoteAddress : null);
+  console.log("GET " + ip +' : REQ ' + '\'/all\'');
+  let response;
   try {
     response = await axios.get("https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory");
     if (response.status !== 200) {
@@ -16,10 +21,9 @@ router.get('/',async (req, res, next) => {
   const html = cheerio.load(response.data);
   var global = html('th[class=covid-total-row]');
   res.json({
-      countries: parseInt(global[0].children[0].children[0].data.trim().replace(/,/g, "")),
-      cases: parseInt(global[1].children[0].children[0].data.trim().replace(/,/g, "")),
-      deaths: parseInt(global[2].children[0].children[0].data.trim().replace(/,/g, "")),
-      recovered: parseInt(global[3].children[0].children[0].data.trim().replace(/,/g, "")),
+      cases: parseInt(global[1].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
+      deaths: parseInt(global[2].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
+      recovered: parseInt(global[3].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
   });
 })
 
