@@ -34,7 +34,7 @@ router.get('/', async function (req, res, next) {
     }
     let $ = cheerio.load(response.data);
     var map = $('a[class=image]');
-    var mapUrl = map[1].children[0].attribs.src.replace('220px', '480px') || "";
+    var mapUrl = map[1] ? map[1].children[0].attribs.src.replace('220px', '480px') : ""
     result.push({
       name: country.trim(),
       img: `https:${names[i-1].children[0].attribs.src.replace('23px', '128px')}`,
