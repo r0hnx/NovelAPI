@@ -22,24 +22,11 @@ router.get('/', async function (req, res, next) {
 
   for (let i = 11; i < names.length; i += 2) {
     let url = `https://en.wikipedia.org${names[i].children[0].attribs.href}`;
-    let country = names[i].children[0].children[0].data || names[i].children[0].children[0].children[0].data || "";
-    let response;
-    try {
-      response = await axios.get(url);
-      if (response.status !== 200) {
-        console.log("ERROR");
-      }
-    } catch (err) {
-      return null;
-    }
-    let $ = cheerio.load(response.data);
-    var map = $('a[class=image]');
-    var mapUrl = map[1] ? map[1].children[0].attribs.src.replace('220px', '480px') : ""
+    let country = names[i].children[0].children[0].data || names[i].children[0].children[0].children[0].data || "";    
     result.push({
       name: country.trim(),
       img: `https:${names[i-1].children[0].attribs.src.replace('23px', '128px')}`,
       url: url.trim(),
-      map: mapUrl
     });
   }
 
