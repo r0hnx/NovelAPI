@@ -4,11 +4,6 @@ var axios = require('axios');
 var cheerio = require('cheerio');
 
 router.get('/',async (req, res, next) => {
-  var ip = req.headers['x-forwarded-for'] || 
-     req.connection.remoteAddress || 
-     req.socket.remoteAddress ||
-     (req.connection.socket ? req.connection.socket.remoteAddress : null);
-  console.log("GET " + ip +' : REQ ' + '\'/all\'');
   let response;
   try {
     response = await axios.get("https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory");
