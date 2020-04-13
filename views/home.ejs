@@ -60,7 +60,7 @@
             <div class="row">
 
                 <!--Grid column-->
-                <div class="col-md-6 mb-4 mb-md-0">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 
                     <h3 class="font-weight-bold">COVID-19 Global Data</h3>
 
@@ -79,7 +79,7 @@
                 <!--Grid column-->
 
                 <!--Grid column-->
-                <div class="col-md-5 mb-4 mb-md-0">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 
                     <img src="/stat.png" class="img-fluid" alt="">
 
@@ -117,12 +117,12 @@
                         <!-- <p class="card-text mb-4">NYSE: AZHC • Oct 16, 1:45PM</p> -->
                         <div class="d-flex justify-content-between">
                             <p class="display-4 align-self-end"><%= d.cases.toLocaleString() %></p>
-                            <p class="pb-2 align-self-end" style="font-size: 12px;"><a class="btn btn-sm btn-danger" href="<%= d.url %>">Read More</a>
+                            <p class="pb-2 align-self-end" style="font-size: 12px;"><a class="btn btn-sm btn-outline-danger" href="<%= d.url %>">Read More</a>
                             </p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p class="pb-2" style="color: indianred; font-weight: bold;"><%= d.deaths.toLocaleString() %> <%if(d.deaths > 0) { %>deaths<% } else if(d.deaths == 1) { %>death<% } else { %><% } %></p>
-                            <p class="pb-2" style="color: forestgreen; font-weight: bold;"><%= d.recovered.toLocaleString() %> recov.</p>
+                            <p class="pb-2" style="color: indianred;"><b style="font-size: large;"><%= d.deaths.toLocaleString() %> <%if(d.deaths > 0) { %>deaths<% } else if(d.deaths == 1) { %>death<% } else { %><% } %></p>
+                            <p class="pb-2" style="color: forestgreen;"><b style="font-size: large;"><%= d.recovered.toLocaleString() %> recov.</p>
                         </div>
 
                     </div>
