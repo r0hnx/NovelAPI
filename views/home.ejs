@@ -117,7 +117,7 @@
                         <!-- <p class="card-text mb-4">NYSE: AZHC • Oct 16, 1:45PM</p> -->
                         <div class="d-flex justify-content-between">
                             <p class="display-4 align-self-end"><%= d.cases.toLocaleString() %></p>
-                            <p class="pb-2 align-self-end" style="font-size: 12px;"><a class="btn btn-sm btn-outline-danger" href="<%= d.url %>">Read More</a>
+                            <p class="pb-2 align-self-end" style="font-size: 12px;"><a class="btn btn-sm btn-outline-danger" href="<% if(d.url.includes('undefined')){ %>https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic_by_country_and_territory<% } else { %><%=d.url%><% } %>">Read More</a>
                             </p>
                         </div>
                         <div class="d-flex justify-content-between">
