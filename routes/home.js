@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
             console.log("ERROR");
         }
     } catch (err) {
-        return null;
+        return {};
     }
     res.render('home', {data : response.data, all: allResponse.data});
 })
