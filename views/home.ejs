@@ -40,35 +40,28 @@
             API
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">/country</a>
-            <a class="dropdown-item" href="#">/all</a>
+            <a class="dropdown-item" href="/country">/country</a>
+            <a class="dropdown-item" href="/all">/all</a>
           </div>
         </li>
       </ul>
     </div>
   </nav>
-
 <body>
-
     <div class="container my-5 py-5 z-depth-1">
-
-
         <!--Section: Content-->
         <section class="px-md-5 mx-md-5 text-center dark-grey-text">
-
             <!--Grid row-->
             <div class="row">
-
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-
                     <h3 class="font-weight-bold">COVID-19 Global Data</h3>
-
                     <p class="text-muted">Coronavirus disease (COVID-19) is an infectious disease caused by a new virus.
                         The disease causes respiratory illness (like the flu) with symptoms such as a cough, fever, and
                         in more severe cases, difficulty breathing.
                     </p>
-                    <p><b class="display-4"></b> cases</p>
+                    <p style="margin-bottom: 0;"><b class="display-4"><%= all.cases.toLocaleString() %></b></p>
+                    <p style="text-align: center;letter-spacing: 0.4rem;">confirmed cases</p>
                     <div class="d-flex justify-content-between">
                         <p style="color: indianred;"><b style="font-size: x-large;"><%= all.deaths.toLocaleString() %></b>
                             deaths</p>
@@ -77,28 +70,20 @@
                     </div>
                 </div>
                 <!--Grid column-->
-
                 <!--Grid column-->
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-
                     <img src="/stat.png" class="img-fluid" alt="">
-
                 </div>
                 <!--Grid column-->
-
             </div>
             <!--Grid row-->
-
-
         </section>
         <!--Section: Content-->
-
-
     </div>
     <div style="padding: 0 5%;">
         <hr class="my-5">
     </div>
-    <h3 style="padding: 0 5%;" class="font-weight-bold">Countries Affected</h3>
+    <h3 style="padding-bottom: 20px; text-transform:uppercase;" class="font-weight-bold text-center">Countries Affected</h3>
     <section style="margin: 1% 5%;">
         <div class="row row-cols-1 row-cols-md-3">
             <% data.result.forEach((d) => { %>
@@ -107,7 +92,6 @@
                 <div class="card">
                     <!--Card content-->
                     <div class="card-body pb-0" style="min-width : 250px !important;">
-
                         <!-- Title -->
                         <div class="d-flex justify-content-between">
                             <h4 class="card-title font-weight-bold"><%= d.name %></h4>
@@ -124,9 +108,7 @@
                             <p class="pb-2" style="color: indianred;"><%= d.deaths.toLocaleString() %> <%if(d.deaths > 0) { %>deaths<% } else if(d.deaths == 1) { %>death<% } else { %><% } %></p>
                             <p class="pb-2" style="color: forestgreen;"><%= d.recovered.toLocaleString() %> recov.</p>
                         </div>
-
                     </div>
-
                 </div>
                 <!-- Card -->
             </div>
@@ -134,7 +116,6 @@
         </div>
     </section>
 </body>
-<script src="/odometer.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
