@@ -3,6 +3,28 @@ var router = express.Router();
 var axios = require('axios');
 var cheerio = require('cheerio');
 
+router.get('/:country',async (req, res, next) => {  
+  let response;
+  try {
+    response = await axios.get(`https://novelapi.herokuapp.com/country`);
+    if (response.status !== 200) {
+      console.log("ERROR");
+    }
+  } catch (err) {
+    return null;
+  }
+  let result = response.data.result.filter(n => n.name == `${req.params.country.split('_').map(c => c[0].toUpperCase() + c.slice(1)).join(' ')}`);
+  if(result.length == 0) {
+    res.json({
+      type: 'ERR',
+      code: 404,
+      msg: `Invalid Parameter "${req.params.country}"`,
+      example: "'India', 'United_Kingdom', 'United_States', 'Spain' or 'Antigua_&_Barbuda'"
+    });
+  }
+  res.json(result[0]);
+})
+
 router.get('/', async function (req, res, next) {
   let response;
   try {
