@@ -14,11 +14,11 @@ router.get('/',async (req, res, next) => {
     return null;
   }
   const html = cheerio.load(response.data);
-  var global = html('th[class=covid-total-row]');
+  var global = html('tr[class=sorttop] > th');
   res.json({
-      cases: parseInt(global[1].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
-      deaths: parseInt(global[2].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
-      recovered: parseInt(global[3].children[0].children[2].children[0].data.trim().replace(/,/g, "")),
+      cases: parseInt(global[1].children[0].data.trim().replace(/,/g, "")),
+      deaths: parseInt(global[2].children[0].data.trim().replace(/,/g, "")),
+      recovered: parseInt(global[3].children[0].data.trim().replace(/,/g, "")),
   });
 })
 
