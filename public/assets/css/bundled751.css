@@ -8522,7 +8522,6 @@ a.text-dark:hover, a.text-dark:focus {
 .ni {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "Nioicon" !important;
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
