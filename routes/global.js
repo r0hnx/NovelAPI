@@ -14,7 +14,7 @@ router.get('/',async (req, res, next) => {
     return null;
   }
   const html = cheerio.load(response.data);
-  var global = html('tr[class=sorttop] > th');
+  var global = html('tr[class=sorttop] > th > b');
   res.json({
       cases: parseInt(global[1].children[0].data.trim().replace(/,/g, "")),
       deaths: parseInt(global[2].children[0].data.trim().replace(/,/g, "")),
